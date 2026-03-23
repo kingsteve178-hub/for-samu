@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>For Samu 🌸</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@200;300;400&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blush: #f2c4ce;
+    --rose: #d4849a;
+    --deep-rose: #a85570;
+    --cream: #fdf6f0;
+    --sage: #b5c9b7;
+    --gold: #c9a96e;
+    --dark: #3a2430;
+    --text: #5c3d4a;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── PETALS ── */
+  .petal-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .petal {
+    position: absolute;
+    top: -60px;
+    opacity: 0;
+    animation: fall linear infinite;
+  }
+  .petal svg { display: block; }
+  @keyframes fall {
+    0%   { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0.9; }
+    25%  { transform: translateY(25vh) rotate(60deg) translateX(20px); }
+    50%  { transform: translateY(50vh) rotate(120deg) translateX(-15px); }
+    75%  { transform: translateY(75vh) rotate(200deg) translateX(25px); }
+    100% { transform: translateY(110vh) rotate(300deg) translateX(-10px); opacity: 0; }
+  }
+
+  /* ── HERO ── */
+  #hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 24px;
+    background: radial-gradient(ellipse at 60% 40%, #fde8ef 0%, #fdf6f0 60%, #e8f0e9 100%);
+    z-index: 1;
+  }
+  .floral-ring {
+    position: relative;
+    width: 220px; height: 220px;
+    margin: 0 auto 32px;
+  }
+  .floral-ring svg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    animation: spin-slow 30s linear infinite;
+  }
+  @keyframes spin-slow { to { transform: rotate(360deg); } }
+  .initials {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 56px;
+    font-weight: 300;
+    color: var(--deep-rose);
+    letter-spacing: 2px;
+  }
+  .hero-tag {
+    font-size: 11px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 16px;
+    animation: fadeUp 1s ease both;
+  }
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 8vw, 80px);
+    font-weight: 300;
+    color: var(--dark);
+    line-height: 1.1;
+    animation: fadeUp 1s 0.2s ease both;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--deep-rose);
+  }
+  .hero-sub {
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-top: 14px;
+    font-weight: 300;
+    animation: fadeUp 1s 0.4s ease both;
+  }
+  .scroll-hint {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--rose);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    animation: fadeUp 1s 1s ease both;
+  }
+  .scroll-hint span { animation: bounce 2s ease-in-out infinite; }
+  @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTION SHARED ── */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 80px 24px;
+  }
+  .section-label {
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 300;
+    text-align: center;
+    color: var(--dark);
+    margin-bottom: 48px;
+  }
+  .section-title em { font-style: italic; color: var(--deep-rose); }
+
+  /* ── GRADUATION ── */
+  #graduation {
+    background: linear-gradient(160deg, #3a2430 0%, #5c3d4a 100%);
+    color: var(--cream);
+    text-align: center;
+  }
+  #graduation .section-label { color: var(--gold); }
+  #graduation .section-title { color: var(--cream); }
+  #graduation .section-title em { color: var(--blush); }
+  .grad-cap { font-size: 72px; margin-bottom: 24px; display: block; animation: wiggle 3s ease-in-out infinite; }
+  @keyframes wiggle { 0%,100%{transform:rotate(-5deg)} 50%{transform:rotate(5deg)} }
+  .grad-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 3vw, 26px);
+    font-weight: 300;
+    font-style: italic;
+    max-width: 640px;
+    margin: 0 auto 32px;
+    line-height: 1.7;
+    color: #f0dde5;
+  }
+  .grad-degree {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    padding: 14px 36px;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 8px;
+  }
+
+  /* ── COMPLIMENTS SLIDER ── */
+  #compliments { background: var(--cream); }
+  .slider-wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .slides { overflow: hidden; border-radius: 4px; }
+  .slide {
+    display: none;
+    padding: 56px 48px;
+    background: #fff;
+    border: 1px solid #f0dde5;
+    box-shadow: 0 8px 48px rgba(168,85,112,0.06);
+    text-align: center;
+    border-radius: 4px;
+    animation: slideIn 0.5s ease;
+  }
+  .slide.active { display: block; }
+  @keyframes slideIn { from{opacity:0;transform:translateX(20px)} to{opacity:1;transform:translateX(0)} }
+  .slide-icon { font-size: 40px; margin-bottom: 20px; display: block; }
+  .slide-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 3.5vw, 32px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--dark);
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+  .slide-sub {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rose);
+  }
+  .slider-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    margin-top: 32px;
+  }
+  .nav-btn {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--blush);
+    background: transparent;
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--deep-rose);
+    transition: all 0.3s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-btn:hover { background: var(--deep-rose); color: #fff; border-color: var(--deep-rose); }
+  .slide-counter {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--rose);
+    min-width: 50px;
+    text-align: center;
+  }
+  .dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--blush);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .dot.active { background: var(--deep-rose); transform: scale(1.3); }
+
+  /* ── LETTER SECTION ── */
+  #letter {
+    background: radial-gradient(ellipse at 30% 70%, #f2c4ce22 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, #b5c9b722 0%, transparent 50%),
+                linear-gradient(180deg, #fdf6f0 0%, #fff8f2 100%);
+    text-align: center;
+  }
+
+
+  .music-player {
+    max-width: 420px;
+    margin: 0 auto 40px;
+    background: var(--dark);
+    border-radius: 16px;
+    padding: 20px 28px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 16px 64px rgba(58,36,48,0.18);
+  }
+  .album-art {
+    width: 54px; height: 54px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--deep-rose), var(--blush));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+    animation: spin-slow 8s linear infinite;
+    animation-play-state: paused;
+  }
+  .album-art.playing { animation-play-state: running; }
+  .player-info { flex: 1; text-align: left; }
+  .song-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--cream);
+    margin-bottom: 2px;
+  }
+  .song-artist { font-size: 11px; letter-spacing: 2px; color: var(--blush); text-transform: uppercase; }
+  .play-btn {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--deep-rose);
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.2s, background 0.2s;
+    flex-shrink: 0;
+  }
+  .play-btn:hover { transform: scale(1.1); background: var(--rose); }
+
+  .letter-reveal-btn {
+    display: inline-block;
+    padding: 16px 48px;
+    border: 1px solid var(--rose);
+    background: transparent;
+    color: var(--deep-rose);
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.4s;
+    margin-bottom: 48px;
+  }
+  .letter-reveal-btn:hover { background: var(--deep-rose); color: #fff; border-color: var(--deep-rose); }
+
+  .letter-body {
+    max-width: 680px;
+    margin: 0 auto;
+    display: none;
+    animation: fadeUp 1s ease both;
+  }
+  .letter-body.shown { display: block; }
+  .letter-paper {
+    background: #fff;
+    border: 1px solid #f0dde5;
+    padding: 56px 56px 48px;
+    text-align: left;
+    box-shadow: 0 12px 64px rgba(168,85,112,0.08);
+    position: relative;
+  }
+  .letter-paper::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 56px; right: 56px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--blush), transparent);
+  }
+  .letter-dear {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-style: italic;
+    color: var(--deep-rose);
+    margin-bottom: 28px;
+  }
+  .letter-paper p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(17px, 2vw, 20px);
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--text);
+    margin-bottom: 24px;
+  }
+  .letter-signature {
+    margin-top: 40px;
+    text-align: right;
+  }
+  .letter-signature .sig-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 4px;
+  }
+  .letter-signature .sig-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-style: italic;
+    color: var(--dark);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 48px 24px;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rose);
+    background: var(--cream);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    text-align: center;
+    padding: 16px 0;
+    font-size: 20px;
+    letter-spacing: 12px;
+    color: var(--blush);
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: 600px) {
+    .slide { padding: 36px 24px; }
+    .letter-paper { padding: 36px 24px; }
+    .music-player { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- FALLING PETALS -->
+<div class="petal-canvas" id="petalCanvas"></div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="floral-ring">
+    <svg viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Rotating floral wreath -->
+      <g opacity="0.5">
+        <!-- Flowers around the ring -->
+        <circle cx="110" cy="10" r="7" fill="#d4849a"/>
+        <circle cx="110" cy="10" r="4" fill="#f2c4ce"/>
+        <circle cx="110" cy="210" r="7" fill="#d4849a"/>
+        <circle cx="110" cy="210" r="4" fill="#f2c4ce"/>
+        <circle cx="10" cy="110" r="7" fill="#d4849a"/>
+        <circle cx="10" cy="110" r="4" fill="#f2c4ce"/>
+        <circle cx="210" cy="110" r="7" fill="#d4849a"/>
+        <circle cx="210" cy="110" r="4" fill="#f2c4ce"/>
+
+        <circle cx="42" cy="42" r="6" fill="#b5c9b7"/>
+        <circle cx="42" cy="42" r="3" fill="#d4c9b5"/>
+        <circle cx="178" cy="42" r="6" fill="#b5c9b7"/>
+        <circle cx="178" cy="42" r="3" fill="#d4c9b5"/>
+        <circle cx="42" cy="178" r="6" fill="#b5c9b7"/>
+        <circle cx="42" cy="178" r="3" fill="#d4c9b5"/>
+        <circle cx="178" cy="178" r="6" fill="#b5c9b7"/>
+        <circle cx="178" cy="178" r="3" fill="#d4c9b5"/>
+
+        <!-- Petals detail -->
+        <ellipse cx="110" cy="22" rx="5" ry="9" fill="#f2c4ce" opacity="0.7"/>
+        <ellipse cx="110" cy="198" rx="5" ry="9" fill="#f2c4ce" opacity="0.7"/>
+        <ellipse cx="22" cy="110" rx="9" ry="5" fill="#f2c4ce" opacity="0.7"/>
+        <ellipse cx="198" cy="110" rx="9" ry="5" fill="#f2c4ce" opacity="0.7"/>
+
+        <!-- Thin ring -->
+        <circle cx="110" cy="110" r="98" stroke="#d4849a" stroke-width="0.5" stroke-dasharray="4 6" opacity="0.4"/>
+        <circle cx="110" cy="110" r="90" stroke="#b5c9b7" stroke-width="0.5" opacity="0.3"/>
+
+        <!-- Leaf accents -->
+        <ellipse cx="76" cy="20" rx="4" ry="8" fill="#b5c9b7" opacity="0.6" transform="rotate(-35 76 20)"/>
+        <ellipse cx="144" cy="20" rx="4" ry="8" fill="#b5c9b7" opacity="0.6" transform="rotate(35 144 20)"/>
+        <ellipse cx="76" cy="200" rx="4" ry="8" fill="#b5c9b7" opacity="0.6" transform="rotate(35 76 200)"/>
+        <ellipse cx="144" cy="200" rx="4" ry="8" fill="#b5c9b7" opacity="0.6" transform="rotate(-35 144 200)"/>
+        <ellipse cx="20" cy="76" rx="8" ry="4" fill="#b5c9b7" opacity="0.6" transform="rotate(-35 20 76)"/>
+        <ellipse cx="20" cy="144" rx="8" ry="4" fill="#b5c9b7" opacity="0.6" transform="rotate(35 20 144)"/>
+        <ellipse cx="200" cy="76" rx="8" ry="4" fill="#b5c9b7" opacity="0.6" transform="rotate(35 200 76)"/>
+        <ellipse cx="200" cy="144" rx="8" ry="4" fill="#b5c9b7" opacity="0.6" transform="rotate(-35 200 144)"/>
+      </g>
+    </svg>
+    <div class="initials">S</div>
+  </div>
+
+  <p class="hero-tag">✦ A little something, just for you ✦</p>
+  <h1 class="hero-name">Samukelisiwe<br><em>Samu</em></h1>
+  <p class="hero-sub">With admiration &amp; warmth &nbsp;·&nbsp; from Steven</p>
+
+  <div class="scroll-hint">
+    <span>↓</span>
+    scroll to begin
+  </div>
+</section>
+
+<div class="divider">✿ ✾ ✿</div>
+
+<!-- GRADUATION -->
+<section id="graduation">
+  <p class="section-label">✦ A milestone worth celebrating ✦</p>
+  <h2 class="section-title">She <em>did</em> it.</h2>
+  <span class="grad-cap">🎓</span>
+  <p class="grad-text">
+    Years of late nights, countless papers, and the kind of discipline that only the truly dedicated understand —
+    and today, it all comes to its beautiful fruition. Samu, you walked into Wits with a dream and you are walking
+    out as a <strong style="color:var(--blush); font-weight:400;">Bachelor of Psychology</strong>.
+    That is not a small thing. That is everything.
+  </p>
+  <div class="grad-degree">University of the Witwatersrand &nbsp;·&nbsp; Psychology</div>
+</section>
+
+<div class="divider" style="background: #fdf6f0;">✿ ✾ ✿</div>
+
+<!-- COMPLIMENTS SLIDER -->
+<section id="compliments">
+  <p class="section-label">✦ things I notice about you ✦</p>
+  <h2 class="section-title">What makes you <em>you</em></h2>
+
+  <div class="slider-wrap">
+    <div class="slides">
+
+      <div class="slide active">
+        <span class="slide-icon">🌟</span>
+        <p class="slide-quote">"The moment you smile, the entire room shifts — like someone dimmed everything else just so the light could find you."</p>
+        <p class="slide-sub">Your smile</p>
+      </div>
+
+      <div class="slide">
+        <span class="slide-icon">✨</span>
+        <p class="slide-quote">"Those hazel eyes of yours — I have tried, genuinely tried, to look away. I have not succeeded yet."</p>
+        <p class="slide-sub">Your eyes</p>
+      </div>
+
+      <div class="slide">
+        <span class="slide-icon">🍃</span>
+        <p class="slide-quote">"Your voice is not just heard, it is felt — soft and warm, like a gentle hug the ears did not know they were waiting for."</p>
+        <p class="slide-sub">Your voice</p>
+      </div>
+
+      <div class="slide">
+        <span class="slide-icon">🌸</span>
+        <p class="slide-quote">"There is something effortlessly graceful about the way you carry yourself — it is quiet confidence, and it is magnetic."</p>
+        <p class="slide-sub">Your presence</p>
+      </div>
+
+      <div class="slide">
+        <span class="slide-icon">💫</span>
+        <p class="slide-quote">"You chose to study the complexity of the human mind — and somehow that tells me everything about the depth of yours."</p>
+        <p class="slide-sub">Your mind</p>
+      </div>
+
+      <div class="slide">
+        <span class="slide-icon">🌹</span>
+        <p class="slide-quote">"The softness in you is not weakness — it is your greatest strength. The world is sharper without it, and warmer because of it."</p>
+        <p class="slide-sub">Your warmth</p>
+      </div>
+
+      <div class="slide">
+        <span class="slide-icon">🎓</span>
+        <p class="slide-quote">"You set a goal, you showed up every single day, and you saw it through. That kind of character is rare. You are rare, Samu."</p>
+        <p class="slide-sub">Your strength</p>
+      </div>
+
+    </div>
+
+    <div class="slider-nav">
+      <button class="nav-btn" id="prev">&#8592;</button>
+      <span class="slide-counter" id="counter">1 / 7</span>
+      <button class="nav-btn" id="next">&#8594;</button>
+    </div>
+    <div class="dots" id="dots"></div>
+  </div>
+</section>
+
+<div class="divider">✿ ✾ ✿</div>
+
+<!-- LETTER -->
+<section id="letter">
+  <p class="section-label">✦ from the heart ✦</p>
+  <h2 class="section-title">A letter, <em>for you</em></h2>
+
+  <!-- Music Player -->
+  <div class="music-player">
+    <div class="album-art" id="albumArt">🎵</div>
+    <div class="player-info">
+      <div class="song-title">Rearrange My World</div>
+      <div class="song-artist">Daniel Caesar</div>
+    </div>
+    <button class="play-btn" id="playBtn" onclick="toggleMusic()">▶</button>
+  </div>
+  <audio id="audioPlayer" src="song.mp3" preload="auto" loop></audio>
+
+  <button class="letter-reveal-btn" onclick="revealLetter()">Open the Letter</button>
+
+  <div class="letter-body" id="letterBody">
+    <div class="letter-paper">
+      <div class="letter-dear">Dear Samu,</div>
+
+      <p>
+        I want to start by saying — I did not plan any of this. I did not plan for you to appear, I did not plan
+        for the conversations to feel the way they do, and I certainly did not plan to sit here trying to find words
+        that are worthy of someone like you. But here we are.
+      </p>
+
+      <p>
+        Before you, the idea of having a crush on someone felt simple — a passing feeling, something ordinary.
+        Then you came along and quietly rewrote everything I thought I knew about it.
+        You rearranged my world, Samu. Not loudly. Not with grand gestures or dramatic moments.
+        Just... slowly and surely, the way morning light fills a room — until I looked up and everything looked different.
+      </p>
+
+      <p>
+        There is something about the way you carry yourself that stays with me long after our conversations end.
+        The gentleness in your voice — soft, unhurried, like it was never in a rush to impress anyone
+        because it never had to be. The way your smile arrives and suddenly there is nowhere else
+        in the world worth looking. The way your eyes hold something — warmth, maybe, or depth —
+        that I find myself thinking about at completely inconvenient times.
+      </p>
+
+      <p>
+        You made me realise that the right person does not make your world smaller.
+        They open it up. They add colour to places you did not even notice were grey.
+        That is what talking to you has done for me.
+        I cannot stop smiling — genuinely, uncontrollably, embarrassingly —
+        and I have come to accept that it is entirely your fault.
+      </p>
+
+      <p>
+        And today — <em>today</em> — you walk across that stage as someone who spent years studying
+        the architecture of the human mind. You chose one of the most demanding, most beautiful disciplines
+        there is, and you saw it through with grace.
+        A Bachelor of Psychology from Wits is not just a degree.
+        It is proof of who you already were — determined, thoughtful, extraordinary.
+      </p>
+
+      <p>
+        So, Samu — congratulations. Not just for graduating.
+        But for being the kind of person who makes the people around her feel more alive just by being present.
+        For the smile that rewrites rooms. For the voice that feels like home.
+        For showing up in my life at a completely unexpected moment and somehow
+        making it feel like exactly the right time.
+      </p>
+
+      <p>
+        You rearranged my world. And I would not change a single thing about it.
+      </p>
+
+      <div class="letter-signature">
+        <div class="sig-label">Yours sincerely,</div>
+        <div class="sig-name">Steven — The Hopeless Romantic</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Made with admiration &nbsp;·&nbsp; For Samu &nbsp;·&nbsp; 🌸
+</footer>
+
+<script>
+  // ── PETALS ──
+  const canvas = document.getElementById('petalCanvas');
+  const colors = ['#f2c4ce','#d4849a','#b5c9b7','#fde8ef','#e8d5c4'];
+  for (let i = 0; i < 18; i++) {
+    const petal = document.createElement('div');
+    petal.className = 'petal';
+    const size = 10 + Math.random() * 16;
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    const left = Math.random() * 100;
+    const duration = 8 + Math.random() * 12;
+    const delay = Math.random() * 12;
+    petal.style.cssText = `left:${left}%;width:${size}px;height:${size}px;animation-duration:${duration}s;animation-delay:${delay}s;`;
+    petal.innerHTML = `<svg viewBox="0 0 20 20" width="${size}" height="${size}"><ellipse cx="10" cy="10" rx="6" ry="9" fill="${color}" opacity="0.7" transform="rotate(${Math.random()*360} 10 10)"/></svg>`;
+    canvas.appendChild(petal);
+  }
+
+  // ── SLIDER ──
+  const slides = document.querySelectorAll('.slide');
+  const counter = document.getElementById('counter');
+  const dotsWrap = document.getElementById('dots');
+  let current = 0;
+
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    dotsWrap.appendChild(d);
+  });
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    dotsWrap.children[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dotsWrap.children[current].classList.add('active');
+    counter.textContent = `${current + 1} / ${slides.length}`;
+  }
+
+  document.getElementById('prev').onclick = () => goTo(current - 1);
+  document.getElementById('next').onclick = () => goTo(current + 1);
+
+  // ── LETTER REVEAL ──
+  function revealLetter() {
+    const body = document.getElementById('letterBody');
+    const btn = document.querySelector('.letter-reveal-btn');
+    body.classList.add('shown');
+    btn.style.display = 'none';
+    body.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // ── MUSIC PLAYER ──
+  const audio = document.getElementById('audioPlayer');
+  const playBtn = document.getElementById('playBtn');
+  const albumArt = document.getElementById('albumArt');
+  let isPlaying = false;
+
+  function toggleMusic() {
+    isPlaying = !isPlaying;
+    if (isPlaying) {
+      audio.play();
+      playBtn.textContent = '⏸';
+      albumArt.classList.add('playing');
+    } else {
+      audio.pause();
+      playBtn.textContent = '▶';
+      albumArt.classList.remove('playing');
+    }
+  }
+
+</script>
+</body>
+</html>
